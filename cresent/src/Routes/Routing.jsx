@@ -8,7 +8,7 @@ import AddProfile from '../Commponents/Admin/AddProfile'
 import CLientSideOcr from '../Commponents/Admin/CLientSideOcr'
 import Dashbaord from '../Commponents/Admin/Dashbaord'
 
-import PDFTest from '../Commponents/Admin/Pdftest'
+
 import SearchEmployee from '../Commponents/Admin/SearchEmployee'
 import UpdateAllDoc from '../Commponents/Admin/UpdateAllDoc'
 import Register from '../Commponents/Auth/Register'
@@ -57,15 +57,8 @@ function Routing() {
             <SuperAdmin exact path='/updateAlldoc'component={UpdateAllDoc} />
                
             
-            
-           
             <SuperAdmin exact path='/client-search' component={ CLientSideOcr}/>
-            
-            
-
-            <SuperAdmin exact path='/viewid/:id' component={ ProfileDetail} />
-              
-         
+             <Route exact path='/viewid/:id' component={ ProfileDetail} />
             
             <Redirect to="/"/>
             

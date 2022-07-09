@@ -102,8 +102,9 @@ const findEmployee=expressAsyncHandler(async(req,res,next)=>{
     try {
         
         // like search
-        const employee=await Employee.find({$or:[{firstName:new RegExp(req.query.firstName,'i')},{lastName:new RegExp(req.query.lastName,'i')},{employeeNumber:new RegExp(req.query.employeeNumber,'i')}]});
-        console.log(employee);
+        console.log(req.query);
+        const employee=await Employee.find({$or:[{firstName:req.query.firstName},{lastName:req.query.lastName},{employeeNumber:req.query.employeeNumber},{email:req.query.email},{Cnic:req.query.Cnic}]});
+        
         if(employee.length>0){
           
             res.status(200).json(
@@ -114,6 +115,31 @@ const findEmployee=expressAsyncHandler(async(req,res,next)=>{
                 message:'Employee not found'
             });
         }
+    } catch (error) {
+        res.status(500).json({
+            message:error.message
+        
+        })
+    }
+})
+const findEmployeebyEmployeeNumber=expressAsyncHandler(async(req,res,next)=>{
+    try {
+        //write code to full text search in employeeNumber
+        console.log(req.query.employeeNumber);
+        
+        const employee=await Employee.find({$or:[{firstName:new RegExp(req.query.firstName,'i')},{lastName:new RegExp(req.query.lastName,'i')},{employeeNumber:new RegExp(req.query.employeeNumber,'i')}]});
+        if(employee.length>0){
+            res.status(200).json(
+                employee
+            );
+        }
+        else{
+            res.status(404).json({
+                message:'Employee not found'
+            });
+        }
+
+
     } catch (error) {
         res.status(500).json({
             message:error.message
@@ -206,7 +232,7 @@ const employeeeShowAll=expressAsyncHandler(async(req,res,next)=>{
 const employeeeShowById=expressAsyncHandler(async(req,res,next)=>{
     try{
        
-       const employee= await Employee.findById({_id:req.params.id});
+       const employee= await Employee.findById({_id:req.headers.id});
         res.status(200).send([employee]);
     }catch(err){
         console.log(err);
@@ -619,6 +645,7 @@ const findAllEmployee=expressAsyncHandler(async(req,res)=>{
 exports.employeeeController=
 {
 findEmployeeEmail,
+findEmployeebyEmployeeNumber,
 employeeeAdd,
 employeeeUpdate,
 employeeeShowAll,

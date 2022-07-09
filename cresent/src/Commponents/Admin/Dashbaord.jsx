@@ -86,7 +86,7 @@ function Dashbaord() {
        
         </li>
          <li className="nav-item">
-         <div class="w-lg-75 mx-lg-auto">
+         <div class="w-lg-100 mx-lg-auto">
             
             <div class="input-card ">
                 <div class="input-card-form">
@@ -143,7 +143,9 @@ function Dashbaord() {
                 <div className={close?'d-none':'col-sm-2'} style={{paddingTop:"50px"}}>
                    <SideNav Dashbaord="act"/>
                 </div>
-                  {isLoading ? <div className="alert alert-info">Loading...</div>:
+                  {isLoading ? <div class="spinner-border text-center my-5" style={{width: "9rem", height: "9rem"}} role="status">
+                    <span class="sr-only">Loading...</span>
+                  </div>:
                    <div className={close?'col-sm-12':'col-sm-10'}>
                    {
                      employee.length>0?

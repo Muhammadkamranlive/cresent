@@ -21,12 +21,13 @@ employeeRouter.post('/addhistory',Middleware.checkAuth,employeeeController.emplo
 employeeRouter.get('/api/history/find/',Middleware.checkAuth,employeeeController.employeeeController.employeeeFindServiceHistory);
 // search emplyee by firstname or lastname or cnic or employnumber
 employeeRouter.get('/api/search/',Middleware.checkAuth,employeeeController.employeeeController.findEmployee);
+employeeRouter.get('/api/empNo',employeeeController.employeeeController.findEmployeebyEmployeeNumber);
 
 
 //show all employee
 employeeRouter.get('/api/employees/',Middleware.checkAuth,employeeeController.employeeeController.employeeeShowAll);
 //show employee by id
-employeeRouter.get('/api/employees/:id',Middleware.checkAuth,employeeeController.employeeeController.employeeeShowById);
+employeeRouter.get('/api/employeedetail',employeeeController.employeeeController.employeeeShowById);
 //delete employee by id
 employeeRouter.post('/api/employees/:id',employeeeController.employeeeController.employeeeDelete);
 employeeRouter.get('/findemail',employeeeController.employeeeController.findEmployeeByEmail);

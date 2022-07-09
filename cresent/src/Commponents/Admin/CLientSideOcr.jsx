@@ -34,10 +34,10 @@ function CLientSideOcr() {
     const {
       data: { text },
     } = await worker.recognize(imageData);
-    setOcr(text.slice(12,20));
-     const resonse=await axios.get("http://localhost:5000/api/search/",{
+    setOcr(text.slice(13,20));
+     const resonse=await axios.get("http://localhost:5000/api/empNo",{
         params:{
-            employeeNumber: text.slice(13,20)
+            employeeNumber:text.slice(13,20)
         },
         headers:{
           'authorization':user

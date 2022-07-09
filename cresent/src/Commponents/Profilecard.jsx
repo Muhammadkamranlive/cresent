@@ -3,6 +3,7 @@ import axios from 'axios';
 import SideNav from './Admin/SideNav';
 import Navbar from './Navbar';
 import {useSelector} from 'react-redux';
+import { Link } from 'react-router-dom';
 function Profilecard() {
 
     const [employee,setemployee]=useState([]);
@@ -92,7 +93,7 @@ function Profilecard() {
                                     </div>
                                     <div className="text-center py-5">
                                         
-                                        <a href={`/viewid/${emp._id}`} className="btn btn-primary">View Profile</a>
+                                        <Link to={`/viewid/${emp._id}`} className="btn btn-primary">View Profile</Link>
         
                                     </div>
                                 </div>

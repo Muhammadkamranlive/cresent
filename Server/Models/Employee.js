@@ -119,7 +119,7 @@ const employeeSchema=new mongoose.Schema({
 
     },
     Cnic:{
-        type:Number,
+        type:String,
         required:true
     },
     profileImage:{
@@ -127,7 +127,7 @@ const employeeSchema=new mongoose.Schema({
         
     },
     phone:{
-        type:Number,
+        type:String,
         required:true
     },
     fatherName:{
@@ -139,7 +139,7 @@ const employeeSchema=new mongoose.Schema({
         required:true
     },
     salary:{
-        type:Number,
+        type:String,
         required:true
     },
     

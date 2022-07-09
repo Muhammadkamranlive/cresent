@@ -11,7 +11,7 @@ import swal from 'sweetalert';
 import { DocumentViewer } from 'react-documents';
 import { useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom';
-function ProfileDetail() {
+function ProfileDetail(props) {
   //States of prejoining documents
     const [errMessage,setError]=useState('');
     const [successMessage,setSuccess]=useState('');
@@ -19,19 +19,16 @@ function ProfileDetail() {
     const [employee,setemployee]=useState([]);
     const user = useSelector(state => state.auth.value);
     const history = useHistory();
-    console.log(user);
-    //use params to get id from url
-    const {id}=useParams();
-    //fetch employees
-
-
+    const { id } = useParams();
+    console.log(id);
+    
    const handleChange =async () => {
       try {
         setLoading(true);
-        const res=await axios.get(`http://localhost:5000/api/employees/${id}`,{
+        const res=await axios.get(`http://localhost:5000/api/employeedetail`,{
           headers:{
             'Content-Type':'application/json',
-            'authorization':user
+            'id':id,
           }
         });
         setemployee(res.data);
@@ -48,10 +45,10 @@ function ProfileDetail() {
     if(user){
       try {
         setLoading(true);
-         axios.post(`http://localhost:5000/api/employees/${id}`,{
+         axios.post(`http://localhost:5000/api/employees/`,{
           headers:{
             'Content-Type':'application/json',
-            'authorization':user
+             'id':id,
           }
         }).then(res=>{
           setLoading(false);
@@ -67,12 +64,12 @@ function ProfileDetail() {
       
     }
   }
-    
+     
    useEffect(()=>{
        if(user){
         handleChange();
        }
-   },[user]);
+   },[user,id]);
 
    
  
@@ -631,7 +628,7 @@ function ProfileDetail() {
                              <tr >
                               <td key={prejoining._id}>
                               {
-                                   prejoining.serviceHistory?<h6> <i class="fa-solid fa-circle-check text-success" ></i>  Yes</h6>:<h6><i class="fa-solid fa-xmark text-success"></i> No</h6>
+                                   prejoining.incrementLetter?<h6> <i class="fa-solid fa-circle-check text-success" ></i>  Yes</h6>:<h6><i class="fa-solid fa-xmark text-success"></i> No</h6>
                               } 
                               </td>
                              </tr>

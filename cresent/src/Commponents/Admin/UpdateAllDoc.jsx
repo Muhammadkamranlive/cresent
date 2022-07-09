@@ -18,6 +18,7 @@ function UpdateAllDoc() {
     const [isSuccess, setIsSuccess] = useState(false);
     const [selection,setSelection]=useState('');
     const user=useSelector(state=>state.auth.value);
+    console.log(user);
    //write function to find the employee by employee number first name or last name or email or phone number
     const findEmployee = async (e) => {
         e.preventDefault();
@@ -26,22 +27,24 @@ function UpdateAllDoc() {
         setIsSuccess(false);
         const url = 'http://localhost:5000/api/search/';   
         try {
-            const response = await axios.get(url,{
-                params: {  
-                    employeeNumber: employeeNumber,
-                    firstName: firstName,
-                    lastName: lastName,
-                    email: email,
-                    Cnic: Cnic,
-
-                 },
-                 headers:{
-                    'authorization':user
-                 }   
-            });
-            setEmployee(response.data);
-            setIsLoading(false);
-            setIsSuccess(true);
+            if(user){
+                const response = await axios.get(url,{
+                    params: {  
+                        employeeNumber: employeeNumber,
+                        firstName: firstName,
+                        lastName: lastName,
+                        email: email,
+                        Cnic: Cnic,
+    
+                     },
+                     headers:{
+                        'authorization':user
+                     }   
+                });
+                setEmployee(response.data);
+                setIsLoading(false);
+                setIsSuccess(true);
+            }
 
           
         } catch (error) {

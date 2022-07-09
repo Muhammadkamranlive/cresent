@@ -30,7 +30,7 @@ function AddProfile() {
          <div className="d-flex justify-content-between">
           <button onClick={side} className="btn btn-default mb-3"><i className="fa fa-bars"></i></button>
         
-            <h3 className="text-primary text-center ">Add Employees</h3>
+            <h6 className="text-primary text-center py-4 ">Add Employees</h6>
             </div>
              <div className={close?'d-none':'col-sm-2'}>
                  <SideNav add="act"/>

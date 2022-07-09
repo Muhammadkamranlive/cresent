@@ -40,7 +40,7 @@ app.post('/upload',upload.single('photo'), (req, res) => {
     res.status(200).send(photo);
 });
 //mongoose.connect('mongodb://localhost/cresent');
-mongoose.connect('mongodb://localhost:27017/test').then(() => {
+mongoose.connect('mongodb://localhost:27017/cresent').then(() => {
     console.log('connected to database');
 }).catch(() => {
     console.log('connection failed');
